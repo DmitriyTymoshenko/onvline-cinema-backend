@@ -11,6 +11,6 @@ export class TelegramModule implements OnModuleInit {
   constructor(private readonly telegramService: TelegramService) {}
 
   async onModuleInit() {
-    await this.telegramService.launch();
+    // await this.telegramService.launch();
   }
 }

@@ -4,10 +4,6 @@ import { Telegraf } from 'telegraf';
 import { Telegram } from './telegram.interface';
 import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
 import { MovieService } from '../movie/movie.service';
-import { ActorDto } from '../actor/actor.dto';
-import { Ref } from '@typegoose/typegoose';
-import { ActorModel } from '../actor/actor.model';
-import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class TelegramService {
