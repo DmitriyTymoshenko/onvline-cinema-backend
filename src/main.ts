@@ -7,5 +7,5 @@ import * as morgan from 'morgan';
   app.setGlobalPrefix('api');
   app.enableCors();
   app.use(morgan('tiny'));
-  await app.listen(4200);
+  await app.listen(parseInt(process.env.PORT, +'0.0.0.0') || 3000);
 })();
