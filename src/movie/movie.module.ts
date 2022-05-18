@@ -15,7 +15,7 @@ import { TelegramModule } from 'src/telegram/telegram.module';
         },
       },
     ]),
-    TelegramModule,
+    forwardRef(() => TelegramModule),
   ],
   controllers: [MovieController],
   providers: [MovieService],

@@ -15,6 +15,7 @@ import { TelegramService } from '../telegram/telegram.service';
 export class MovieService {
   constructor(
     @InjectModel(MovieModel) private readonly MovieModel: ModelType<MovieModel>,
+    @Inject(forwardRef(() => TelegramService))
     private readonly telegramService: TelegramService,
   ) {}
 
@@ -122,10 +123,12 @@ export class MovieService {
   async update(_id: string, dto: UpdateMovieDto) {
     console.log('dto', dto);
     console.log('isSendTelegram', dto.isSendTelegram);
-    // if (!dto.isSendTelegram) {
-    //   await this.sendNotification(dto);
-    //   dto.isSendTelegram = true;
-    // }
+    if (!dto.isSendTelegram) {
+      const movie: any = await this.bySlug(dto.slug);
+      console.log('movie', movie);
+      await this.telegramService.sendNotification(movie);
+      dto.isSendTelegram = true;
+    }
     const updateDoc = await this.MovieModel.findByIdAndUpdate(_id, dto, {
       new: true,
     }).exec();

@@ -16,6 +16,7 @@ import { ICollection } from './genre.interface';
 export class GenreService {
   constructor(
     @InjectModel(GenreModel) private readonly GenreModel: ModelType<GenreModel>,
+    @Inject(forwardRef(() => MovieService))
     private readonly movieService: MovieService,
   ) {}
 
